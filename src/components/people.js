@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+import { CustomizedExpansionPanels } from './panel';
 
 class People extends Component {
   i = 0;
@@ -37,7 +40,10 @@ class People extends Component {
       <div>
         <center>
           <h1>Character List</h1>
-          <input onChange={this.handleChange}></input>
+          <div>
+            <SearchIcon style={{ color: 'white' }} />
+            <InputBase style={{ color: 'red', padding: '5px' }} onChange={this.handleChange} placeholder="Search…" />
+          </div>
         </center>
         {this.props.sw
           .filter((character) => {
@@ -46,18 +52,7 @@ class People extends Component {
           })
           .map((character) => (
             <div className="card" id={this.increase()} key={this.i}>
-              <div className="card-body">
-                <h5 className="card-title" onClick={this.onClick}>
-                  {character.name}
-                </h5>
-                <div className={character.name} style={{ display: 'none' }}>
-                  <p className="card-title">birth year: {character.birth_year}</p>
-                  <p className="card-title">eye color: {character.eye_color}</p>
-                  <p className="card-title">gender: {character.gender}</p>
-                  <p className="card-title">height: {character.height}</p>
-                  <p className="card-title">skin color: {character.skin_color}</p>
-                </div>
-              </div>
+              <CustomizedExpansionPanels character={character} />
             </div>
           ))}
       </div>
