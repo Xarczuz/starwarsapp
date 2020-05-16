@@ -14,16 +14,6 @@ class People extends Component {
     });
   }
 
-  onClick(event) {
-    console.log(event.target.innerHTML);
-    let x = document.getElementsByClassName(event.target.innerHTML)[0];
-    if (x.style.display === 'none') {
-      x.style.display = 'block';
-    } else {
-      x.style.display = 'none';
-    }
-  }
-
   increase() {
     this.i++;
     return this.i;
@@ -41,8 +31,8 @@ class People extends Component {
         <center>
           <h1>Character List</h1>
           <div>
-            <SearchIcon style={{ color: 'white' }} />
-            <InputBase style={{ color: 'red', padding: '5px' }} onChange={this.handleChange} placeholder="Search…" />
+            <SearchIcon id="SearchIcon" />
+            <InputBase id="InputBase" onChange={this.handleChange} placeholder="Search…" />
           </div>
         </center>
         {this.props.sw

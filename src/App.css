@@ -8,9 +8,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 20px;
-  color: #656566; 
+  color: #656566;
   background-color: #262528;
 }
-h1{
-  color:yellow;
+h1 {
+  color: yellow;
+}
+
+#SearchIcon {
+  color: white;
+}
+
+#InputBase {
+  color: red;
+  padding-bottom: 15px;
 }
