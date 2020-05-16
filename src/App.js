@@ -28,8 +28,14 @@ class App extends Component {
   }
 
   afterFetch() {
-    this.setState({ results: this.tempData, isLoading: false });
+    this.setState({ results: this.tempData.sort(this.compare), isLoading: false });
     localStorage.setItem('myStoredData', JSON.stringify(this.tempData));
+  }
+
+  compare(a, b) {
+    if (a.name > b.name) return 1;
+    if (b.name > a.name) return -1;
+    return 0;
   }
 
   componentDidMount() {

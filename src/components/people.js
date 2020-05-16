@@ -10,13 +10,11 @@ class People extends Component {
   componentDidMount() {
     this.setState({
       peoples: this.props.sw,
-      filter: '',
     });
   }
 
   increase() {
-    this.i++;
-    return this.i;
+    return this.i++;
   }
 
   handleChange = (e) => {
@@ -35,16 +33,18 @@ class People extends Component {
             <InputBase id="InputBase" onChange={this.handleChange} placeholder="Search…" />
           </div>
         </center>
-        {this.props.sw
-          .filter((character) => {
-            const searchRegex = new RegExp(this.filter);
-            return searchRegex.test(character.name.toLowerCase());
-          })
-          .map((character) => (
-            <div className="card" id={this.increase()} key={this.i}>
-              <CustomizedExpansionPanels character={character} />
-            </div>
-          ))}
+        <ul>
+          {this.props.sw
+            .filter((character) => {
+              const searchRegex = new RegExp(this.filter);
+              return searchRegex.test(character.name.toLowerCase());
+            })
+            .map((character) => (
+              <li key={this.increase()}>
+                <CustomizedExpansionPanels character={character} />
+              </li>
+            ))}
+        </ul>
       </div>
     );
   }

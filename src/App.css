@@ -23,3 +23,8 @@ h1 {
   color: red;
   padding-bottom: 15px;
 }
+
+ul {
+  width: auto;
+  padding-right: 10%;
+}

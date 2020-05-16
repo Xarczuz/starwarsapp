@@ -43,8 +43,8 @@ const ExpansionPanelSummary = withStyles({
 const ExpansionPanelDetails = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
-    backgroundColor:'grey',
-    color:'white'
+    backgroundColor: 'grey',
+    color: 'white',
   },
 }))(MuiExpansionPanelDetails);
 
@@ -55,25 +55,23 @@ export function CustomizedExpansionPanels(data) {
     setExpanded(newExpanded ? panel : false);
   };
   return (
-    <div>
-      <ExpansionPanel square expanded={expanded === 'panel'} onChange={handleChange('panel')}>
-        <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>{data.character.name}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <p>
-            Birth year: {data.character.birth_year}
-            <br />
-            Eye color: {data.character.eye_color}
-            <br />
-            Gender: {data.character.gender}
-            <br />
-            Height: {data.character.height}
-            <br />
-            Skin color: {data.character.skin_color}
-          </p>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
+    <ExpansionPanel square expanded={expanded === 'panel'} onChange={handleChange('panel')}>
+      <ExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
+        <Typography>{data.character.name}</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <p>
+          Birth year: {data.character.birth_year}
+          <br />
+          Eye color: {data.character.eye_color}
+          <br />
+          Gender: {data.character.gender}
+          <br />
+          Height: {data.character.height}
+          <br />
+          Skin color: {data.character.skin_color}
+        </p>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
   );
 }
