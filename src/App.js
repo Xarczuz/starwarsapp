@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import People from './components/people';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import './App.css';
 
@@ -10,6 +11,7 @@ class App extends Component {
   };
 
   tempData = [];
+  totalElements = 0;
 
   fetchUntilCondition(apiCall) {
     fetch(apiCall)
@@ -19,6 +21,7 @@ class App extends Component {
         data.results.forEach((element) => {
           this.tempData.push(element);
         });
+        this.totalElements = data.count;
         if (!data.next != null) {
           this.fetchUntilCondition(data.next); // fetch again
         }
@@ -28,8 +31,11 @@ class App extends Component {
   }
 
   afterFetch() {
-    this.setState({ results: this.tempData.sort(this.compare), isLoading: false });
-    localStorage.setItem('myStoredData', JSON.stringify(this.tempData));
+    console.log(this.tempData.length + '-' + this.totalElements);
+    if (this.tempData.length === this.totalElements) {
+      this.setState({ results: this.tempData.sort(this.compare), isLoading: false });
+      localStorage.setItem('myStoredData', JSON.stringify(this.tempData));
+    }
   }
 
   compare(a, b) {
@@ -50,7 +56,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.isLoading && <i className="fa fa-spinner fa-spin"></i>}
+        {this.state.isLoading && <CircularProgress color="secondary" />}
         {!this.state.isLoading && <People sw={this.state.results} />}
       </div>
     );
